@@ -1,10 +1,9 @@
-const express = require('express')
-const router = express.Router()
+const { Router } = require("express");
+const router = Router();
+const userController = require("../controllers/user-controller");
 
-router.get('/getAll', (req, res) => {
-    res.send('About user')}
-)
-router.get('/getById/:userId', controller.getById)
-router.get('/getByUsername/:username', controller.getByUsername)
+router.get("/", userController.getAll);
+// router.get('/search/id/:userId', userController.getById)
+// router.get('/search/username/:username', userController.getByUsername)
 
-module.exports = router
+module.exports = router;
