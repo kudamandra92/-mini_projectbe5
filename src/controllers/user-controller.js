@@ -38,12 +38,25 @@ module.exports = {
     }
   },
   login: (req, res) => {
-    if (!req.body) {
-      console.log(req);
+    if (req.body.length === 0) {
       res.status(400).send("Bad Request");
     } else {
       return service
         .checkAuth(req.body)
+        .then((data) => {
+          res.json(data);
+        })
+        .catch((error) => {
+          res.status(500).send(error);
+        });
+    }
+  },
+  register: (req, res) => {
+    if (req.body.length === 0) {
+      res.status(400).send("Bad Request");
+    } else {
+      return service
+        .insertUser(req.body)
         .then((data) => {
           res.json(data);
         })
